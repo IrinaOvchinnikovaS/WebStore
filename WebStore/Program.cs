@@ -1,17 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
-services.AddControllersWithViews();
+services.AddControllersWithViews(); //добавление системы MVC
 
 var app = builder.Build();
 
-//для перехвата исключений в браузере
+//для перехвата исключений и отображения в браузере (в режиме разработки)
 if(app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
 
-app.UseRouting();
+app.UseRouting(); //добаавили систему маршрутизации
 
 var config = app.Configuration;
 
@@ -21,6 +21,6 @@ app.MapGet("/throw", () =>
     throw new ApplicationException("Ошибка в программе!");
 });
 
-app.MapDefaultControllerRoute();
+app.MapDefaultControllerRoute(); //добавлена обработка входящих подключений системы MVC
 
 app.Run();
