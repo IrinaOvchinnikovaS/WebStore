@@ -21,6 +21,9 @@ app.MapGet("/throw", () =>
     throw new ApplicationException("Ошибка в программе!");
 });
 
-app.MapDefaultControllerRoute(); //добавлена обработка входящих подключений системы MVC
+//app.MapDefaultControllerRoute(); //добавлена обработка входящих подключений системы MVC
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
