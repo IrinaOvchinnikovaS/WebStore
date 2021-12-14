@@ -6,4 +6,6 @@ public class Employee
     public string FirstName { get; set; }
     public string Patronymic { get; set; }
     public int Age { get; set; }
+    public string Education { get; set; }
+    public string WorkExperience { get; set; }
 }
