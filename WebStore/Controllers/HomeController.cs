@@ -23,9 +23,14 @@ namespace WebStore.Controllers
             return $"Hello World! {id} - {value}";
         }
 
-        public IActionResult Employees()
+        public IActionResult Employees(string id)
         {
-            return View(_employees);
+            int idInt = Convert.ToInt32(id);
+            if(idInt == 0)
+                return View(_employees);
+
+            Employee employee = _employees.Find(e => e.Id == idInt);
+            return View("Employee", employee);
         }
     }
 }
