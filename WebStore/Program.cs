@@ -1,27 +1,29 @@
-var builder = WebApplication.CreateBuilder(args);
+п»їvar builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
-services.AddControllersWithViews(); //добавление системы MVC
+services.AddControllersWithViews(); //РґРѕР±Р°РІР»РµРЅРёРµ СЃРёСЃС‚РµРјС‹ MVC
 
 var app = builder.Build();
 
-//для перехвата исключений и отображения в браузере (в режиме разработки)
+//РґР»СЏ РїРµСЂРµС…РІР°С‚Р° РёСЃРєР»СЋС‡РµРЅРёР№ Рё РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ Р±СЂР°СѓР·РµСЂРµ (РІ СЂРµР¶РёРјРµ СЂР°Р·СЂР°Р±РѕС‚РєРё)
 if(app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
 
-app.UseRouting(); //добаавили систему маршрутизации
+app.UseStaticFiles();
+
+app.UseRouting(); //РґРѕР±Р°Р°РІРёР»Рё СЃРёСЃС‚РµРјСѓ РјР°СЂС€СЂСѓС‚РёР·Р°С†РёРё
 
 var config = app.Configuration;
 
 //app.MapGet("/", () => config["CustomGreetings"]);
 app.MapGet("/throw", () =>
 {
-    throw new ApplicationException("Ошибка в программе!");
+    throw new ApplicationException("РћС€РёР±РєР° РІ РїСЂРѕРіСЂР°РјРјРµ!");
 });
 
-//app.MapDefaultControllerRoute(); //добавлена обработка входящих подключений системы MVC
+//app.MapDefaultControllerRoute(); //РґРѕР±Р°РІР»РµРЅР° РѕР±СЂР°Р±РѕС‚РєР° РІС…РѕРґСЏС‰РёС… РїРѕРґРєР»СЋС‡РµРЅРёР№ СЃРёСЃС‚РµРјС‹ MVC
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
