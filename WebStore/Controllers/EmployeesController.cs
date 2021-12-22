@@ -3,6 +3,8 @@ using WebStore.Models;
 
 namespace WebStore.Controllers
 {
+    //[Route("empl/[action]/{id?}")]
+    //[Route("Staff/{action=Index}/{id?}")]
     public class EmployeesController : Controller
     {
         private static readonly List<Employee> _employees = new()
@@ -17,6 +19,7 @@ namespace WebStore.Controllers
             return View(_employees);
         }
 
+        //[Route("~/employees/info-{id}")]
         public IActionResult Details(int id)
         {
             ViewData["TestValue"] = 123;
