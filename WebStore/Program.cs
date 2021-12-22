@@ -1,5 +1,7 @@
 ﻿using WebStore.Infrastructure.Conventions;
 using WebStore.Infrastructure.Middleware;
+using WebStore.Services;
+using WebStore.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ services.AddControllersWithViews(opt =>
 {
     opt.Conventions.Add(new TestConvention());
 }); //добавление системы MVC
+
+services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); //Singleton - потому что InMemory располагаются
 
 //отсюда формирование конвейера
 var app = builder.Build();
