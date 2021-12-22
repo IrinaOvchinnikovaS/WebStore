@@ -2,6 +2,7 @@
 using WebStore.Models;
 using WebStore.Data;
 using WebStore.ViewModels;
+using WebStore.Services.Interfaces;
 
 namespace WebStore.Controllers
 {
@@ -9,15 +10,16 @@ namespace WebStore.Controllers
     //[Route("Staff/{action=Index}/{id?}")]
     public class EmployeesController : Controller
     {
-        private ICollection<Employee> _employees;
+        private readonly IEmployeesData _EmployeesData;
 
-        public EmployeesController()
+        public EmployeesController(IEmployeesData EmployeesData)
         {
-            _employees = TestData.Employees;
+            _EmployeesData = EmployeesData;
         }
         public IActionResult Index()
         {
-            return View(_employees);
+            var employeesData = _EmployeesData.GetAll();
+            return View(employeesData);
         }
 
         //[Route("~/employees/info-{id}")]
@@ -25,7 +27,7 @@ namespace WebStore.Controllers
         {
             ViewData["TestValue"] = 123;
 
-            var employee = _employees.FirstOrDefault(e => e.Id == id);
+            var employee = _EmployeesData.GetById(id);
 
             if (employee is null)
                 return NotFound();
@@ -37,9 +39,10 @@ namespace WebStore.Controllers
 
         // public IActionResult Create() =>View();
 
+        [HttpGet]
         public IActionResult Edit(int id)
         {
-            var employee = _employees.FirstOrDefault(e => e.Id == id);
+            var employee = _EmployeesData.GetById(id);
 
             if (employee is null)
                 return NotFound();
@@ -51,14 +54,29 @@ namespace WebStore.Controllers
                 Name = employee.FirstName,
                 Patronymic = employee.Patronymic,
                 Age = employee.Age,
+                Education = employee.Education,
+                WorkExperience = employee.WorkExperience,
             };
 
             return View(model);
         }
 
+        [HttpPost]
         public IActionResult Edit(EmployeeEditViewModel Model)
         {
-            //обработка модели...
+            var employee = new Employee
+            {
+                Id = Model.Id,
+                LastName = Model.LastName,
+                FirstName = Model.Name,
+                Patronymic = Model.Patronymic,
+                Age = Model.Age,
+                Education = Model.Education,
+                WorkExperience = Model.WorkExperience,
+            };
+
+            if(!_EmployeesData.Edit(employee))
+                return NotFound();
 
             return RedirectToAction("Index");
         }
