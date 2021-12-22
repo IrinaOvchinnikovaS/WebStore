@@ -1,7 +1,12 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using WebStore.Infrastructure.Conventions;
+
+var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
-services.AddControllersWithViews(); //добавление системы MVC
+services.AddControllersWithViews(opt =>
+{
+    opt.Conventions.Add(new TestConvention());
+}); //добавление системы MVC
 
 var app = builder.Build();
 
