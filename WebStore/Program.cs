@@ -1,4 +1,5 @@
 ﻿using WebStore.Infrastructure.Conventions;
+using WebStore.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ services.AddControllersWithViews(opt =>
     opt.Conventions.Add(new TestConvention());
 }); //добавление системы MVC
 
+//отсюда формирование конвейера
 var app = builder.Build();
 
 //для перехвата исключений и отображения в браузере (в режиме разработки)
@@ -16,17 +18,15 @@ if(app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.Map("/testpath", async context => await context.Response.WriteAsync("Test middleware"));
+
 app.UseStaticFiles();
 
 app.UseRouting(); //добаавили систему маршрутизации
 
-var config = app.Configuration;
+app.UseMiddleware<TestMiddleware>();
 
-//app.MapGet("/", () => config["CustomGreetings"]);
-app.MapGet("/throw", () =>
-{
-    throw new ApplicationException("Ошибка в программе!");
-});
+app.UseWelcomePage("/welcome");
 
 //app.MapDefaultControllerRoute(); //добавлена обработка входящих подключений системы MVC
 app.MapControllerRoute(
