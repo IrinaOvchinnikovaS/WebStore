@@ -11,6 +11,9 @@ namespace WebStore.Infrastructure.Middleware
 
         public async Task Invoke(HttpContext context)
         {
+            var controller_name = context.Request.RouteValues["controller"];
+            var action_name = context.Request.RouteValues["action"];
+
             //обработка информации из context.Request
 
             var processing_task = _Next(context); //далее здесь работает оставшаяся часть конвейера

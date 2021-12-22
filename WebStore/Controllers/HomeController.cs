@@ -7,6 +7,8 @@ namespace WebStore.Controllers
 
         public IActionResult Index()
         {
+            //ControllerContext.HttpContext.Request.RouteValues
+
             //return Content("Данные из первого контроллера");
             return View();
         }
@@ -16,14 +18,6 @@ namespace WebStore.Controllers
             return $"Hello World! {id} - {value}";
         }
 
-        //public IActionResult Employees(string id)
-        //{
-        //    int idInt = Convert.ToInt32(id);
-        //    if(idInt == 0)
-        //        return View(_employees);
-
-        //    Employee employee = _employees.Find(e => e.Id == idInt);
-        //    return View("Employee", employee);
-        //}
+        public void Throw(string msg) => throw new ApplicationException(msg);
     }
 }

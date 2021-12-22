@@ -28,7 +28,7 @@ app.UseMiddleware<TestMiddleware>();
 
 app.UseWelcomePage("/welcome");
 
-//app.MapDefaultControllerRoute(); //добавлена обработка входящих подключений системы MVC
+//app.MapDefaultControllerRoute(); //добавлена обработка входящих подключений системы MVC (аналогия ниже)
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
