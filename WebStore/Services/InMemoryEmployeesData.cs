@@ -64,7 +64,7 @@ namespace WebStore.Services
             if(_Employees.Contains(employee)) //в БД не надо
                 return employee.Id;
 
-            employee.Id = ++_MaxFreeId;
+            employee.Id = _MaxFreeId++;
             _Employees.Add(employee);
 
             return employee.Id;
