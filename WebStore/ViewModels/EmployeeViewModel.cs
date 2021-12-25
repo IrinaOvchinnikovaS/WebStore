@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebStore.ViewModels;
-public class EmployeeViewModel
+public class EmployeeViewModel : IValidatableObject
 {
     [HiddenInput(DisplayValue = false)]
     public int Id { get; set; }
@@ -33,4 +33,13 @@ public class EmployeeViewModel
 
     [Display(Name = "Опыт работы")]
     public string WorkExperience { get; set; }
+
+    //серверная валидация, а та, что выше - встраивается в разметку
+    public IEnumerable<ValidationResult> Validate(ValidationContext Context)
+    {
+        if (LastName.Length > 100)
+            yield return new ValidationResult("Длина фамилии больше 100 символов");
+
+        yield return ValidationResult.Success!;
+    }
 }
