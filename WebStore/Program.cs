@@ -12,6 +12,7 @@ services.AddControllersWithViews(opt =>
 }); //добавление системы MVC
 
 services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); //Singleton - потому что InMemory располагаются
+services.AddSingleton<IProductData, InMemoryProductData>();     // Singleton - потому что InMemory располагаются
 
 //отсюда формирование конвейера
 var app = builder.Build();
