@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore", "WebStore\WebSto
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F93C1A8B-7293-42D9-98B2-2B6CA474C7DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "Tests\TestConsole\TestConsole.csproj", "{D54FB22A-6D9D-4F09-96B5-D3641E15C132}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsole", "Tests\TestConsole\TestConsole.csproj", "{D54FB22A-6D9D-4F09-96B5-D3641E15C132}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.Domain", "WebStore.Domain\WebStore.Domain.csproj", "{48DECFC9-E422-45C3-820A-6239CDFFD693}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{D54FB22A-6D9D-4F09-96B5-D3641E15C132}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D54FB22A-6D9D-4F09-96B5-D3641E15C132}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D54FB22A-6D9D-4F09-96B5-D3641E15C132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48DECFC9-E422-45C3-820A-6239CDFFD693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48DECFC9-E422-45C3-820A-6239CDFFD693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48DECFC9-E422-45C3-820A-6239CDFFD693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48DECFC9-E422-45C3-820A-6239CDFFD693}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
