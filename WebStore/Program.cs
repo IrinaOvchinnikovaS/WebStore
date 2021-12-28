@@ -4,6 +4,7 @@ using WebStore.Infrastructure.Conventions;
 using WebStore.Infrastructure.Middleware;
 using WebStore.Services;
 using WebStore.Services.Interfaces;
+using WebStore.Services.InMemory;
 
 var builder = WebApplication.CreateBuilder(args);
 
