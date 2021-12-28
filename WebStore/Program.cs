@@ -16,14 +16,22 @@ services.AddControllersWithViews(opt =>
 services.AddDbContext<WebStoreDB>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
+services.AddTransient<IDbInitializer, DbInitializer>();
+
 services.AddSingleton<IEmployeesData, InMemoryEmployeesData>(); //Singleton - потому что InMemory располагаются
 services.AddSingleton<IProductData, InMemoryProductData>();     // Singleton - потому что InMemory располагаются
 
 //отсюда формирование конвейера
 var app = builder.Build();
 
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var db_initializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    await db_initializer.InitializeAsync(RemoveBefore: false);
+}
+
 //для перехвата исключений и отображения в браузере (в режиме разработки)
-if(app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
