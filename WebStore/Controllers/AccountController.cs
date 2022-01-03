@@ -6,6 +6,11 @@ namespace WebStore.Controllers
     {
         public IActionResult Register() => View();
 
+        public async Task<IActionResult> Register()
+        {
+
+        }
+
         public IActionResult Login() => View();
 
         public IActionResult Logout() => RedirectToAction("Index", "Home");
