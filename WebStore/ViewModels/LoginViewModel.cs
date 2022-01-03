@@ -18,6 +18,6 @@ namespace WebStore.ViewModels
         public bool RememberMe { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
     }
 }
