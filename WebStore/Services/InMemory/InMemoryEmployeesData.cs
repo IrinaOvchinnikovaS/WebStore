@@ -4,6 +4,7 @@ using WebStore.Services.Interfaces;
 
 namespace WebStore.Services.InMemory
 {
+    [Obsolete("Используйте класс WebStore.Services.InSQL.SqlEmployeesData, в будущих версиях класс InMemoryEmployeesData будет удалён", false)]
     public class InMemoryEmployeesData : IEmployeesData
     {
         private readonly ILogger<InMemoryEmployeesData> _Logger;
