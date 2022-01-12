@@ -2,10 +2,10 @@
 
 @{
     ViewData["Title"] = "Информация о сотруднике id: " + Model.Id;
+    Layout = "_LayoutContainer";
 }
 
-<div class="container">
-    <div>
+ <div>
     <h4>Сотрудник - @ViewBag.SelectedEmployee.FirstName</h4>
     <hr />
     <dl class="row">
@@ -62,6 +62,6 @@
     </a>
     <a asp-action="Index">Назад к списку</a>
 </div>
-</div>
+
 
 
