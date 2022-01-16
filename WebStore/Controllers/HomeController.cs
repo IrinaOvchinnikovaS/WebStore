@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels;
+using WebStore.Infrastructure.Mapping;
 
 namespace WebStore.Controllers
 {
@@ -9,16 +10,7 @@ namespace WebStore.Controllers
 
         public IActionResult Index([FromServices] IProductData ProductData)
         {
-            var products = ProductData.GetProducts()
-               .OrderBy(p => p.Order)
-               .Take(6)
-               .Select(p => new ProductViewModel
-               {
-                   Id = p.Id,
-                   Name = p.Name,
-                   Price = p.Price,
-                   ImageUrl = p.ImageUrl,
-               });
+            var products = ProductData.GetProducts().OrderBy(p => p.Order).Take(6).ToView();
             ViewBag.Products = products;
 
             //ControllerContext.HttpContext.Request.RouteValues
