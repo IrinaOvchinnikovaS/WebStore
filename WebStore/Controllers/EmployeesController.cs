@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebStore.Domain.Entities;
+using WebStore.Domain.Entities.Identity;
 using WebStore.ViewModels;
 using WebStore.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -40,10 +41,10 @@ namespace WebStore.Controllers
             return View(employee);
         }
 
-        //[Authorize(Roles = "Admin")]
+        //[Authorize(Roles = Role.Administrators)]
         public IActionResult Create() => View("Edit", new EmployeeViewModel());
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = Role.Administrators)]
         public IActionResult Edit(int? id)
         {
             if (id is null)
@@ -71,7 +72,7 @@ namespace WebStore.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = Role.Administrators)]
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel Model)
         {
@@ -108,7 +109,7 @@ namespace WebStore.Controllers
             return RedirectToAction("Index");
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = Role.Administrators)]
         public IActionResult Delete(int id)
         {
             if (id < 0)
@@ -133,7 +134,7 @@ namespace WebStore.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = Role.Administrators)]
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {
