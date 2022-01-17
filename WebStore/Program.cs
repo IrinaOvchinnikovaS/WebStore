@@ -8,6 +8,7 @@ using WebStore.Infrastructure.Middleware;
 using WebStore.Services;
 using WebStore.Services.InSQL;
 using WebStore.Services.Interfaces;
+using WebStore.Services.InCookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +66,7 @@ services.ConfigureApplicationCookie(opt =>
 
 services.AddScoped<IEmployeesData, SqlEmployeesData>();
 services.AddScoped<IProductData, SqlProductData>();
+services.AddScoped<ICartService, InCookiesCartService>();
 
 //отсюда формирование конвейера
 var app = builder.Build();
